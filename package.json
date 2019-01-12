@@ -1,0 +1,17 @@
+{
+  "name": "sar-log-server",
+  "version": "1.0.0",
+  "description": "server for sar logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shane.elliott@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "got": "^9.5.0",
+    "http": "0.0.0",
+    "path": "^0.12.7"
+  }
+}
