@@ -8,4 +8,14 @@ This node server accepts https posts and then uses the sartopo api to set a mark
 
 Install - the usual
 
-clone git c
+clone git clone https://github.com/smelliott100/sme-sartopo-mapsrv.git
+
+cd sme-sartopo-mapsrv
+
+npm install
+
+node . 
+
+I have it running on my little sartopo offline box with https://www.npmjs.com/package/pm2
+
+
