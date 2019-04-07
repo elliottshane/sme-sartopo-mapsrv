@@ -75,9 +75,9 @@ to the appropriate data and run, you get a hash.  This hash should match the has
 
 at the console you can hit the following letters to test posting to sartopo.com:
 
-1. t = test posing with signature to sartopo.com
-2. m = post without signature, this I use to verify the grojson is correct and I post to sartopo offline. 
-3. x = jsut give you the hash for comparison. 
+* t = test posing with signature to sartopo.com
+* m = post without signature, this I use to verify the grojson is correct and I post to sartopo offline. 
+* x = jsut give you the hash for comparison. 
 
 all the variables have to be manually edited in to code for now. 
 I have it running on my little sartopo offline box with https://www.npmjs.com/package/pm2
