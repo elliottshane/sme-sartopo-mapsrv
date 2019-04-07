@@ -7,6 +7,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 var stdin = process.openStdin();
+const config = require('./config.js');
 
 var clientUrl = "http://localhost:8081";
 var sartopoOl = "http://localhost:8080";
@@ -166,21 +167,15 @@ app.post('/sartopo/point', (request, response) => {
 })
 
 stdin.addListener("data", function (d) {
-
-
-    var mapId = "";
-    var host = "http://localhost:8080";
-    var url = host + "/api/v1/map/" + mapId + "/Marker";
+    
+    const { mapId, host, expires, key64, acct, loc } = config;
+    var url=  host + "/api/v1/map/" + mapId + "/Marker";
     var uri = "/api/v1/map/" + mapId + "/Marker";
-    var expires = ; //expiration of your subscription. 
-    var key64 = ""; //see Matt
-    var acct = ""
-    var loc = [-106.95389, 39.20581];
 
     //m test a point without signature against sartopo offline.
     if (d.toString().trim() === 'm') {
         console.log("--NO Hash---");
-
+        
         let newPoint = {
             "id": null,
             "properties":
