@@ -80,6 +80,4 @@ m = post without signature, this I use to verify the grojson is correct and I po
 x = jsut give you the hash for comparison. 
 
 all the variables have to be manually edited in to code for now. 
-
-
-
+I have it running on my little sartopo offline box with https://www.npmjs.com/package/pm2
