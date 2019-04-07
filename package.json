@@ -9,9 +9,12 @@
   "author": "shane.elliott@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "base-64": "^0.1.0",
+    "crypto": "^1.0.1",
     "express": "^4.16.4",
     "got": "^9.5.0",
     "http": "0.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "utf8": "^3.0.0"
   }
 }
