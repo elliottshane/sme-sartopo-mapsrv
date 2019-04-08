@@ -12,10 +12,8 @@ const config = require('./config.js');
 var clientUrl = "http://localhost:8081";
 var sartopoOl = "http://localhost:8080";
 
-
 //CORS Stuff change the url to the url of your app that is calling the api
 app.use(function (req, res, next) {
-
     res.header("Access-Control-Allow-Origin", clientUrl);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
@@ -37,7 +35,6 @@ app.post('/sartopo/resource/', (request, response) => {
             "assignmentId": "",
             "type": "PERSON",
             "agency": request.body.agency
-
         },
         "id": request.body.resourceId
     }
@@ -163,16 +160,16 @@ app.post('/sartopo/point', (request, response) => {
             response.send(data.body)
         }).catch(function (error) {
             console.log(error)
-        })
+        });                                                                                                                                                                                                                                                                                                                                                              
 })
 
 stdin.addListener("data", function (d) {
-    
-    const { mapId, host, expires, key64, acct, loc } = config;
+
+    const { mapId, host, expires, key64, id, loc } = config;
     var url=  host + "/api/v1/map/" + mapId + "/Marker";
     var uri = "/api/v1/map/" + mapId + "/Marker";
 
-    //m test a point without signature against sartopo offline.
+   
     if (d.toString().trim() === 'm') {
         console.log("--NO Hash---");
         
@@ -237,15 +234,16 @@ stdin.addListener("data", function (d) {
         //post the stuff
         let formData = {
             json: JSON.stringify(point),
-            id: acct,
+            id: id,
             expires: expires,
             signature: hash
         };
-        //console.log(formData);
+        console.log(formData);
+        console.log(url)
         got(url, {
             form: true,
             body: formData,
-        })
+            })
             .then(function (data) {
                 console.log(data.body)
             }).catch(function (error) {
@@ -282,7 +280,7 @@ stdin.addListener("data", function (d) {
         //post the stuff
         let formData = {
             json: JSON.stringify(point),
-            id: acct,
+            id: id,
             expires: expires,
             signature: hash
         };
