@@ -90,7 +90,7 @@ Here is what I have implemented to generatethe signature and use in this node ap
 
 
 
- I have not implemented a way for the mapserver to post to sartopo.com yet as I cannot get them to work.  for now,the following is implemented:
+ Update, I can now post to sartopo.com with signature.  I will add some API endpoints for my app and others soon. For now,the following is implemented:
 
 at the console you can hit the following letters to test posting to sartopo.com:
 
