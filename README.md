@@ -110,7 +110,7 @@ Above I reference a Code and Key pair for use in generating the required signatu
 5. you will notice a failed post with a code in it, copy the code.
 6.replace your_code in the following url and paste into the browser. sartopo.com/api/v1/activate?code=your_code
 7. you should get a page tha looks like the following:
-
+'
   "code": "XXXXXXXXXXX",
   "account": {
     "id": "XXXXXX",
@@ -127,7 +127,7 @@ Above I reference a Code and Key pair for use in generating the required signatu
     }
   },
   "key": "xXXXXxXXXXXXXXXxxxXXXXxXxXXXXXXXXXXXX="
-}
+}'
 
 the id is the value of code and ky is the value of key.
 
