@@ -25,7 +25,7 @@ with json formatted like:
 
 
 
-Sartopo.com
+# Sartopo.com
 
 I am working on this working with sartopo.com.  From what I understand, I need to send the same info from above with:
 
@@ -98,6 +98,37 @@ at the console you can hit the following letters to test posting to sartopo.com:
 * m = post without signature, this I use to verify the geojson is correct and I post to sartopo offline. 
 * x = jsut give you the hash for comparison. 
 
-all the variables have to be manually edited in to code for now. 
+
+# Code.
+
+Above I reference a Code and Key pair for use in generating the required signature for posting to sartop.com.  This info can be obtained as follows:
+
+1. login into your sartopo account. 
+2. click on this url [sartopo.com app activation](https://sartopo.com/app/activate/offline?redirect=localhost)
+3. enable the developer console of your browser and go to the network tab. 
+4. check the checkbox and click on syn account. 
+5. you will notice a failed post with a code in it, copy the code.
+6.replace your_code in the following url and paste into the browser. sartopo.com/api/v1/activate?code=your_code
+7. you should get a page tha looks like the following:
+
+  "code": "XXXXXXXXXXX",
+  "account": {
+    "id": "XXXXXX",
+    "type": "Feature",
+    "properties": {
+      "subscriptionExpires": 1554760038,
+      "subscriptionType": "pro-1",
+      "subscriptionRenew": true,
+      "subscriptionStatus": "active",
+      "title": "......@sbsar",
+      "class": "UserAccount",
+      "updated": 1554760038,
+      "email": "......@sbsar.org"
+    }
+  },
+  "key": "xXXXXxXXXXXXXXXxxxXXXXxXxXXXXXXXXXXXX="
+}
+
+the id is the value of code and ky is the value of key.
 
 I have it running on my little sartopo offline box with https://www.npmjs.com/package/pm2
