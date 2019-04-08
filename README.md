@@ -111,24 +111,24 @@ Above I reference a Code and Key pair for use in generating the required signatu
 6.replace your_code in the following url and paste into the browser. sartopo.com/api/v1/activate?code=your_code
 7. you should get a page tha looks like the following:
 
-{
-  "code": "XXXXXXXXXXX",
-  "account": {
-    "id": "XXXXXX",
-    "type": "Feature",
-    "properties": {
-      "subscriptionExpires": 1554760038,
-      "subscriptionType": "pro-1",
-      "subscriptionRenew": true,
-      "subscriptionStatus": "active",
-      "title": "......@sbsar",
-      "class": "UserAccount",
-      "updated": 1554760038,
-      "email": "......@sbsar.org"
-    }
-  },
-  "key": "xXXXXxXXXXXXXXXxxxXXXXxXxXXXXXXXXXXXX="
-}
+		{
+		  "code": "XXXXXXXXXXX",
+		  "account": {
+		    "id": "XXXXXX",
+		    "type": "Feature",
+		    "properties": {
+		      "subscriptionExpires": 1554760038,
+		      "subscriptionType": "pro-1",
+		      "subscriptionRenew": true,
+		      "subscriptionStatus": "active",
+		      "title": "......@sbsar",
+		      "class": "UserAccount",
+		      "updated": 1554760038,
+		      "email": "......@sbsar.org"
+		    }
+		  },
+		  "key": "xXXXXxXXXXXXXXXxxxXXXXxXxXXXXXXXXXXXX="
+		}
 
 the id is the value of code and ky is the value of key.
 
