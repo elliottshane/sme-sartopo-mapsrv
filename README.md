@@ -102,9 +102,10 @@ PHP
 
 I have added a php example under php/map.php below quick snipit
 
+          $key = base64_decode($key64);
           $payload = json_encode($point);
           $data = "POST" ." " . $uri ."\n". $expires . "\n" . $payload;
-          $token = base64_encode(hash_hmac('sha256', $data ,$$key,true));
+          $token = base64_encode(hash_hmac('sha256', $data ,$key,true));
 
 
 
