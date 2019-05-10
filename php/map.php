@@ -38,7 +38,6 @@ $app->post('/point', function (Request $request, Response $response, array $args
             ];
     $payload = json_encode($point);
     $data = "POST" ." " . $uri ."\n". $expires . "\n" . $payload;
-    
     $token = base64_encode(hash_hmac('sha256', $data ,$$key,true));
    
     $client = new Client([

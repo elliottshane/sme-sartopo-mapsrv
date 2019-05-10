@@ -100,7 +100,15 @@ at the console you can hit the following letters to test posting to sartopo.com:
 
 PHP
 
-I have added a php example under php/map.php
+I have added a php example under php/map.php below quick snipit
+
+          $payload = json_encode($point);
+          $data = "POST" ." " . $uri ."\n". $expires . "\n" . $payload;
+          $token = base64_encode(hash_hmac('sha256', $data ,$$key,true));
+
+
+
+
 
 # Code.
 
