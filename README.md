@@ -98,6 +98,9 @@ at the console you can hit the following letters to test posting to sartopo.com:
 * m = post without signature, this I use to verify the geojson is correct and I post to sartopo offline. 
 * x = jsut give you the hash for comparison. 
 
+PHP
+
+I have added a php example under php/map.php
 
 # Code.
 

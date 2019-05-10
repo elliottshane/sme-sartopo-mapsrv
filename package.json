@@ -9,6 +9,7 @@
   "author": "shane.elliott@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "base-64": "^0.1.0",
     "crypto": "^1.0.1",
     "express": "^4.16.4",

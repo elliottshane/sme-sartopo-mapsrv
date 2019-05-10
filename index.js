@@ -2,14 +2,14 @@ const http = require('http');
 var got = require('got');
 const express = require('express');
 const bodyParser = require('body-parser');
+const axios = require('axios');
 var crypto = require('crypto');
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 var stdin = process.openStdin();
 const config = require('./config.js');
-
-var clientUrl = "http://localhost:8081";
+var clientUrl = "http://localhost:8080";
 var sartopoOl = "http://localhost:8080";
 
 //CORS Stuff change the url to the url of your app that is calling the api
@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", clientUrl);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header('Access-Control-Allow-Credentials', 'true');
     next();
 });
 
@@ -52,6 +52,7 @@ app.post('/sartopo/resource/', (request, response) => {
     }
     got(mapUrl, {
         form: true,
+        
         body: formData,
     })
         .then(function (data) {
@@ -250,7 +251,8 @@ stdin.addListener("data", function (d) {
                 console.log(error)
             });
     }
-    //Hash only
+
+
     if (d.toString().trim() === 'x') {
         console.log("--HASH---")
 
@@ -275,8 +277,10 @@ stdin.addListener("data", function (d) {
         let payload = JSON.stringify(point)
 
         let data = "POST" + " " + uri + "\n" + expires + "\n" + (payload == null ? "" : payload);
+        //let data = 'test';
         let key = new Buffer(key64, 'base64');
         var hash = crypto.createHmac('SHA256', key).update(data).digest('base64');
+        var hashHex = crypto.createHmac('SHA256', key).update(data).digest('hex');
         //post the stuff
         let formData = {
             json: JSON.stringify(point),
@@ -285,13 +289,24 @@ stdin.addListener("data", function (d) {
             signature: hash
         };
         console.log("post Data", formData);
+        console.log('-------------');
         console.log("hash:", hash);
+        console.log('-------------');
+        console.log("hashHex",hashHex);
+        console.log('-------------');
+        console.log("data",data);
+        console.log("--------------");
+        console.log(key);
+        console.log("--------------")
+
     }
+   
 });
 
 app.get('/sartopo/version', (request, response) => {
     response.send("version 1.0")
 })
+
 
 var server = http.createServer(app);
 
