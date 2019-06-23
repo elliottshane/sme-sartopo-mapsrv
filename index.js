@@ -235,8 +235,9 @@ stdin.addListener("data", function (d) {
         };
         console.log(newPoint)
         //console.log(formData);
-        formData = { json:"NULLPOST"};
+        //formData = { json:"NULLPOST"};
         console.log(formData)
+       //maual ID, jest chedking to try and reproduce Toms error
         got(sartopoOl + "/api/v1/map/" + mapId + "/Marker/eee19fad-cd69-4d8c-8466-ec777f473762", {
             form: true,
             body: formData,
