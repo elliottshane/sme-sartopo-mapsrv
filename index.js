@@ -195,6 +195,7 @@ stdin.addListener("data", function (d) {
         var formData = {
             json: JSON.stringify(newPoint),
         };
+        console.log(newPoint)
         console.log(formData);
         got(sartopoOl + "/api/v1/map/" + mapId + "/Marker", {
             form: true,
@@ -206,6 +207,47 @@ stdin.addListener("data", function (d) {
                 console.log(error);
             });
     }
+    if (d.toString().trim() === 'u') {
+        console.log("--NO Hash---");
+
+        let newPoint = {
+            "id": "eee19fad-cd69-4d8c-8466-ec777f473762",
+            "type": "Feature",
+            "properties":
+            {
+                "marker-symbol": "point",
+                "updated": 0,
+                "marker-color": '#FF00FF',
+                "title": "Test of API-new-x",
+                "description": '',
+                "folderId": null,
+                "marker-rotation": null
+            },
+            "geometry":
+            {
+                "type": "Point",
+                "coordinates": [-107.0164,39.2180]
+            }
+        }
+        console.log("sending....")
+        var formData = {
+            json: JSON.stringify(newPoint),
+        };
+        console.log(newPoint)
+        //console.log(formData);
+        formData = { json:"NULLPOST"};
+        console.log(formData)
+        got(sartopoOl + "/api/v1/map/" + mapId + "/Marker/eee19fad-cd69-4d8c-8466-ec777f473762", {
+            form: true,
+            body: formData,
+        })
+            .then(function (data) {
+                console.log(data.body);
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
     //t test signature hash with post
     if (d.toString().trim() === 't') {
         console.log("--POST With HASH---")
@@ -306,6 +348,14 @@ stdin.addListener("data", function (d) {
 app.get('/sartopo/version', (request, response) => {
     response.send("version 1.0")
 })
+app.post('/api/v1/map/KT1J/Marker', (request, response) => {
+    console.log(request.body);
+    var result = {
+        id:23
+    }
+    response.send(result)
+})
+
 
 
 var server = http.createServer(app);
