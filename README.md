@@ -30,8 +30,8 @@ with json formatted like:
 I am working on this working with sartopo.com.  From what I understand, I need to send the same info from above with:
 
 1. id (Code paramaer described below)
-2. expires (expiration date in ms).  This is the date of you subscription expiration.  
-3. signature (a signature).  The signature is a hask of data as described below:
+2. expires (Time, in milliseconds, after which you want this request to become invalid; two minutes in the future is a good guideline.  This does not refer to the date of your subscription expiration.)
+3. signature (a signature).  The signature is a hash of data as described below:
 
 
 Signature:
@@ -79,7 +79,7 @@ I have a java implementation of this from Matt's code in this repository under j
 In JsvaScript:
 Here is what I have implemented to generatethe signature and use in this node app. The variables are set in the config.js file.
 
-        expires: {Unix Timestamp}, //expiration of your subscription. 
+        expires: {Unix Timestamp}, //time in milliseconds after which this request will be invalid
         key64: "", //Key Parameter
         id: "", //Code Parameter
 
@@ -88,7 +88,24 @@ Here is what I have implemented to generatethe signature and use in this node ap
         let key = new Buffer(key64, 'base64');
         var hash = crypto.createHmac('SHA256', key).update(data).digest('base64');
 
-
+In Python (from github.com/ncssar/sartopo_python) where 'j' is the json payload:
+```
+            params={}
+            params["json"]=json.dumps(j)
+            if "sartopo.com" in self.domainAndPort.lower():
+                self.expires=int(time.time()*1000)+120000 # 2 minutes from current time, in milliseconds
+                data="POST "+mid+apiUrlEnd+"\n"+str(self.expires)+"\n"+json.dumps(j)
+                print("pre-hashed data:"+data)                
+                token=hmac.new(base64.b64decode(self.key),data.encode(),'sha256').digest()
+                token=base64.b64encode(token).decode()
+                print("hashed data:"+str(token))
+                params["id"]=self.id
+                params["expires"]=self.expires
+                params["signature"]=token
+            print("SENDING POST to '"+url+"':")
+            print(json.dumps(params,indent=3))
+            r=self.s.post(url,data=params,timeout=2)
+```
 
  Update, I can now post to sartopo.com with signature.  I will add some API endpoints for my app and others soon. For now,the following is implemented:
 
@@ -120,7 +137,7 @@ Above I reference a Code and Key pair for use in generating the required signatu
 3. enable the developer console of your browser and go to the network tab. 
 4. check the checkbox and click on syn account. 
 5. you will notice a failed post with a code in it, copy the code.
-6.replace your_code in the following url and paste into the browser. sartopo.com/api/v1/activate?code=your_code
+6. replace your_code in the following url and paste into the browser. sartopo.com/api/v1/activate?code=your_code
 7. you should get a page that looks like the following:
 
 		{
